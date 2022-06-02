@@ -2,15 +2,13 @@ version: "3.9"
 
 services:
     mariadbtodolist:
-        container_name: mariadbinventarios
+        container_name: mariadbtodolist
         build: ./mariadb
         volumes:
             - ./mariadb/db:/var/lib/mysql
         restart: always
         env_file:
             - .env
-        environment:
-            MYSQL_DATABASE: inventario_base
         command: 
             - "--default-authentication-plugin=mysql_native_password"
         networks:
@@ -18,12 +16,12 @@ services:
         expose:
             - "3306"
     phpmyadmintodolist:
-        container_name: phpmyadmininventarios
+        container_name: phpmyadmintodolist
         build: ./phpmyadmin
         depends_on:
-            - mariadbinventarios
+            - mariadbtodolist
         environment:
-            - PMA_HOST=mariadbinventarios
+            - PMA_HOST=mariadbtodolist
             - PMA_PORT=3306
             #- PMA_ARBITRARY=1 # exige conexion https
         restart: always
@@ -35,9 +33,25 @@ services:
         expose:
             - 80
         #    - 443
+    nodetodolist:
+        container_name: nodetodolist
+        build: ./node
+        depends_on:
+            - mariadbtodolist
+        volumes:
+            - ./node:/api_node
+        ports:
+            - 8061:8080
+        expose:
+            - "8080"
+        restart: always
+        env_file:
+            - .envNode
+        networks:
+            - todolist-network
 networks:
     todolist-network:
         driver: bridge
 volumes:
-    mariadbtodolist:
-    phpmyadmintodolist:
+    node:
+    mariadb:

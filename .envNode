@@ -1,0 +1,4 @@
+MYSQL_USER=todo_user
+MYSQL_PASSWORD=jnbhTCXL5#$9fAqVJl5CpR
+MYSQL_HOST=mariadbtodolist
+MYSQL_DATABASE=todolist

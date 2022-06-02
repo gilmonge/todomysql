@@ -1,0 +1,22 @@
+{
+    "name": "todolist-api",
+    "version": "0.0.1",
+    "description": "Todo list API",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon -L index.js"
+    },
+    "author": "Gilberth Monge",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "1.20.0",
+        "cors": "2.8.5",
+        "express": "4.18.1",
+        "express-validator": "6.14.1",
+        "helmet": "5.1.0",
+        "jsonwebtoken": "8.5.1",
+        "mysql": "2.18.1",
+        "nodemailer": "6.7.5",
+        "permissions-policy": "0.6.0"
+    }
+}
