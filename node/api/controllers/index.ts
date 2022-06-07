@@ -1,11 +1,12 @@
-const express = require('express')
-const router = express.Router()
+import { Router, Request, Response } from "express";
+
+export let router = Router()
 
 /* root */
     router.get("/", Home);
-    async function Home(req, res) {
-        let urlBase = req.protocol+'://'+req.get('host')
-        let html = `<!doctype html>
+    async function Home(req: Request, res: Response) {
+        let urlBase : string = req.protocol+'://'+req.get('host')
+        let html: string = `<!doctype html>
             <html lang="es-ES">
                 <head>
                     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -68,5 +69,3 @@ const router = express.Router()
         res.send(html)
     }
 /* root */
-
-module.exports = router;

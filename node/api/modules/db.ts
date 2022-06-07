@@ -1,21 +1,20 @@
-const mysql = require('mysql');
-const CONFIG = require("../../config")
+import mysql, { Connection } from 'mysql'
+import CONFIG, { mysqlConection } from "../../config"
 
-class DB {
-    #connection = null
-    #conectionData = {}
-    
-    constructor(){
-        this.#conectionData = CONFIG.mysql
+export class DB {
+    constructor(
+        private conectionData:mysqlConection = CONFIG.mysql,
+        private connection: Connection
+    ){
     }
 
-    async #conectBD(){
-        let ConectionStatus = true
+    private async conectBD(): Promise<boolean>{
+        let ConectionStatus: boolean = true
         /* Conection data */
-        this.#connection = mysql.createConnection(this.#conectionData);
+        this.connection = mysql.createConnection(this.conectionData);
 
         /* conect to mysql */
-        this.#connection.connect(function(err) {
+        this.connection.connect(function(err) {
             // en caso de error
             if(err){
                 console.log(err.code);
@@ -28,17 +27,18 @@ class DB {
         return ConectionStatus
     }
     
-    async #disconectBD(){
-        this.#connection.end(function(){
+    private async disconectBD(): Promise<void>{
+        this.connection.end(function(){
             console.log("DB disconected")
         });
     }
 
-    async CRUDQuery(query, data){
+    async CRUDQuery(query: string, data: any[]){
         return new Promise(async (resolve, reject) => {
-            let conect = this.#conectBD()
-            if(conect){
-                this.#connection.query(query, data, function (error, results, fields) {
+            let conect: Promise<boolean> = this.conectBD()
+            if(await conect){
+                this.connection.query(query, data, function (error: mysql.MysqlError | null, results: any, fields: mysql.FieldInfo[] | undefined
+                    ) {
                     if (error) {
                         reject(
                             {
@@ -61,7 +61,7 @@ class DB {
                     }
                 });
 
-                this.#disconectBD()
+                await this.disconectBD()
             }else{
                 reject(
                     {
@@ -72,7 +72,4 @@ class DB {
             }
         })
     }
-
 }
-
-module.exports = DB;

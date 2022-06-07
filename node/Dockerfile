@@ -3,6 +3,7 @@ FROM node:17-alpine
 
 # instala recursos globales
 RUN npm i -g nodemon
+RUN npm i -g typescript
 
 #creo la carpeta
 RUN mkdir /api_node
