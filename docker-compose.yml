@@ -13,8 +13,8 @@ services:
             - "--default-authentication-plugin=mysql_native_password"
         networks:
             - todolist-network
-        expose:
-            - "3306"
+        ports:
+            - 8062:3306
     phpmyadmintodolist:
         container_name: phpmyadmintodolist
         build: ./phpmyadmin
@@ -54,4 +54,4 @@ networks:
         driver: bridge
 volumes:
     node:
-    mariadb:
+    db:
