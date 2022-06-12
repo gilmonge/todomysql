@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadbtodolist:3306
--- Generation Time: Jun 09, 2022 at 04:57 AM
+-- Generation Time: Jun 12, 2022 at 05:09 AM
 -- Server version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP Version: 8.0.19
 
@@ -31,6 +31,14 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_create` (`var_id` INT(9), `va
             `fk_user` = var_id;
     END$$
 
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_delete` (`var_id` INT(9))   BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `fk_category_list` = var_id;
+
+        DELETE FROM `tbl_category_list`
+        WHERE `id` = var_id;
+    END$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_update` (`var_id` INT(9), `var_name` VARCHAR(50))   BEGIN
         UPDATE `tbl_category_list` SET 
             `name` = var_name
@@ -43,6 +51,11 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_create` (`var_id` INT(9), `var_ti
             `detail` = var_detail,
             `status` = 0,
             `fk_category_list` = var_id;
+    END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_delete` (`var_id` INT(9))   BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `id` = var_id;
     END$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_update` (`var_id` INT(9), `var_title` VARCHAR(50), `var_detail` VARCHAR(100), `var_status` CHAR(1))   BEGIN
@@ -65,6 +78,22 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_create` (`var_email` VARCHAR(80),
         `dateOfBirth` = var_dateOfBirth,
         `fk_user` = ( SELECT LAST_INSERT_ID() );
 END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_delete` (`var_id` INT(9))   BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `fk_category_list` IN (
+            SELECT id FROM `tbl_category_list` WHERE `fk_user` = var_id
+        );
+
+        DELETE FROM `tbl_category_list`
+        WHERE `fk_user` = var_id;
+
+        DELETE FROM `tbl_profile`
+        WHERE `fk_user` = var_id;
+
+        DELETE FROM `tbl_user`
+        WHERE `id` = var_id;
+    END$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_update` (`var_id` INT(9), `var_firstName` VARCHAR(50), `var_lastName` VARCHAR(50), `var_dateOfBirth` DATE)   BEGIN
         UPDATE `tbl_profile` SET 
@@ -95,14 +124,6 @@ CREATE TABLE `tbl_category_list` (
   `fk_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_category_list`
---
-
-INSERT INTO `tbl_category_list` (`id`, `name`, `fk_user`) VALUES
-(1, 'Hogar corregido 2', 1),
-(2, 'Hogar corregido', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -116,13 +137,6 @@ CREATE TABLE `tbl_items` (
   `status` char(1) NOT NULL DEFAULT '0',
   `fk_category_list` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_items`
---
-
-INSERT INTO `tbl_items` (`id`, `title`, `detail`, `status`, `fk_category_list`) VALUES
-(1, 'titulo edit', 'Contenido edit', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -138,13 +152,6 @@ CREATE TABLE `tbl_profile` (
   `fk_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_profile`
---
-
-INSERT INTO `tbl_profile` (`id`, `firstName`, `lastName`, `dateOfBirth`, `fk_user`) VALUES
-(1, 'newName', 'NewLast', '1996-02-05', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -157,13 +164,6 @@ CREATE TABLE `tbl_user` (
   `password` varchar(50) NOT NULL,
   `token` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_user`
---
-
-INSERT INTO `tbl_user` (`id`, `email`, `password`, `token`) VALUES
-(1, 'var_email', 'nuevaPass', 'NuevoToken');
 
 --
 -- Indexes for dumped tables
@@ -204,25 +204,25 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_category_list`
 --
 ALTER TABLE `tbl_category_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_items`
 --
 ALTER TABLE `tbl_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_profile`
 --
 ALTER TABLE `tbl_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

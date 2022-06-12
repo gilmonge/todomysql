@@ -154,7 +154,7 @@
     );
 /* Crear item */
 
-/* Crear item */
+/* Actualizar item */
     DELIMITER //
     CREATE PROCEDURE proc_item_update(
         var_id INT(9),
@@ -178,4 +178,63 @@
         'Contenido edit',
         1
     );
-/* Crear item */
+/* Actualizar item */
+
+/* Eliminar item */
+    DELIMITER //
+    CREATE PROCEDURE proc_item_delete(
+        var_id INT(9)
+    )
+    BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `id` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_item_delete(1);
+/* Eliminar item */
+
+/* Eliminar category */
+    DELIMITER //
+    CREATE PROCEDURE proc_category_delete(
+        var_id INT(9)
+    )
+    BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `fk_category_list` = var_id;
+
+        DELETE FROM `tbl_category_list`
+        WHERE `id` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_category_delete(2);
+/* Eliminar category */
+
+/* Eliminar user */
+    DELIMITER //
+    CREATE PROCEDURE proc_user_delete(
+        var_id INT(9)
+    )
+    BEGIN
+        DELETE FROM `tbl_items` 
+        WHERE `fk_category_list` IN (
+            SELECT id FROM `tbl_category_list` WHERE `fk_user` = var_id
+        );
+
+        DELETE FROM `tbl_category_list`
+        WHERE `fk_user` = var_id;
+
+        DELETE FROM `tbl_profile`
+        WHERE `fk_user` = var_id;
+
+        DELETE FROM `tbl_user`
+        WHERE `id` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_user_delete(1);
+/* Eliminar user */
