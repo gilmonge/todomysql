@@ -1,17 +1,27 @@
 import mysql, { Connection } from 'mysql'
 import CONFIG, { mysqlConection } from "../../config"
 
-export class DB {
-    constructor(
-        private conectionData:mysqlConection = CONFIG.mysql,
-        private connection: Connection
-    ){
+export default class DB {
+    private conectionData:mysqlConection = CONFIG.mysql;
+    private connection: Connection;
+    constructor(){
+        this.connection = mysql.createConnection(this.conectionData)
     }
 
     private async conectBD(): Promise<boolean>{
         let ConectionStatus: boolean = true
         /* Conection data */
         this.connection = mysql.createConnection(this.conectionData);
+
+        this.connection.config.queryFormat = function (query: string, values: any): string {
+            if (!values) return query;
+            return query.replace(/\:(\w+)/g, function (txt: string, key: string) {
+                if (values.hasOwnProperty(key)) {
+                    return this.escape(values[key]);
+                }
+                return txt;
+            }.bind(this));
+        };
 
         /* conect to mysql */
         this.connection.connect(function(err) {
@@ -33,7 +43,7 @@ export class DB {
         });
     }
 
-    async CRUDQuery(query: string, data: any[]){
+    async CRUDQuery(query: string, data: any){
         return new Promise(async (resolve, reject) => {
             let conect: Promise<boolean> = this.conectBD()
             if(await conect){
@@ -56,7 +66,7 @@ export class DB {
                         })
                         return
                     }else{
-                        resolve(results)
+                        resolve(results[0])
                         return
                     }
                 });
