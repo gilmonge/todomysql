@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadbtodolist:3306
--- Generation Time: Jun 12, 2022 at 05:09 AM
+-- Generation Time: Jun 15, 2022 at 01:39 AM
 -- Server version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP Version: 8.0.19
 
@@ -39,6 +39,16 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_delete` (`var_id` INT(9))   B
         WHERE `id` = var_id;
     END$$
 
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_select_by_id` (`var_id` INT(9))   BEGIN
+        SELECT * FROM `tbl_category_list`
+        WHERE `id` = var_id;
+    END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_select_by_user_id` (`var_id` INT(9))   BEGIN
+        SELECT * FROM `tbl_category_list`
+        WHERE `fk_user` = var_id;
+    END$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_category_update` (`var_id` INT(9), `var_name` VARCHAR(50))   BEGIN
         UPDATE `tbl_category_list` SET 
             `name` = var_name
@@ -58,12 +68,27 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_delete` (`var_id` INT(9))   BEGIN
         WHERE `id` = var_id;
     END$$
 
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_select_by_category_id` (`var_id` INT(9))   BEGIN
+        SELECT * FROM `tbl_items` 
+        WHERE `fk_category_list` = var_id;
+    END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_select_by_id` (`var_id` INT(9))   BEGIN
+        SELECT * FROM `tbl_items` 
+        WHERE `id` = var_id;
+    END$$
+
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_update` (`var_id` INT(9), `var_title` VARCHAR(50), `var_detail` VARCHAR(100), `var_status` CHAR(1))   BEGIN
         UPDATE `tbl_items` SET 
             `title` = var_title,
             `detail` = var_detail,
             `status` = var_status
         WHERE `id` = var_id;
+    END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_profile_by_id` (`var_id` INT(9))   BEGIN
+        SELECT * FROM `tbl_profile`
+        WHERE `fk_user` = var_id;
     END$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_create` (`var_email` VARCHAR(80), `var_password` VARCHAR(50), `var_token` VARCHAR(15), `var_firstName` VARCHAR(50), `var_lastName` VARCHAR(50), `var_dateOfBirth` DATE)   BEGIN

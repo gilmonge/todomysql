@@ -238,3 +238,78 @@
 
     CALL proc_user_delete(1);
 /* Eliminar user */
+
+/* Seleccionar Item por id */
+    DELIMITER //
+    CREATE PROCEDURE proc_item_select_by_id(
+        var_id INT(9)
+    )
+    BEGIN
+        SELECT * FROM `tbl_items` 
+        WHERE `id` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_item_select_by_id(1);
+/* Seleccionar Item por id */
+
+/* Seleccionar Item por Categoria */
+    DELIMITER //
+    CREATE PROCEDURE proc_item_select_by_category_id(
+        var_id INT(9)
+    )
+    BEGIN
+        SELECT * FROM `tbl_items` 
+        WHERE `fk_category_list` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_item_select_by_category_id(1);
+/* Seleccionar Item por Categoria */
+
+/* Seleccionar Categoria por id */
+    DELIMITER //
+    CREATE PROCEDURE proc_category_select_by_id(
+        var_id INT(9)
+    )
+    BEGIN
+        SELECT * FROM `tbl_category_list`
+        WHERE `id` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_category_select_by_id(1);
+/* Seleccionar Categoria por id */
+
+/* Seleccionar Categoria por usuario */
+    DELIMITER //
+    CREATE PROCEDURE proc_category_select_by_user_id(
+        var_id INT(9)
+    )
+    BEGIN
+        SELECT * FROM `tbl_category_list`
+        WHERE `fk_user` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_category_select_by_user_id(1);
+/* Seleccionar Categoria por usuario */
+
+/* Seleccionar perfil usuario */
+    DELIMITER //
+    CREATE PROCEDURE proc_profile_by_id(
+        var_id INT(9)
+    )
+    BEGIN
+        SELECT * FROM `tbl_profile`
+        WHERE `fk_user` = var_id;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_profile_by_id(1);
+/* Seleccionar perfil usuario */
