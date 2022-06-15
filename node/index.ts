@@ -82,7 +82,10 @@ const app: Express = express()
 /* Use body parser */
 
 /* Use CORS */
-    app.use("*", cors);
+    const options: cors.CorsOptions = {
+    origin: "*"
+    };
+    app.use(cors(options));
 /* Use CORS */
 
 app.use(express.json());
