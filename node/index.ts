@@ -96,6 +96,11 @@ app.use(express.urlencoded({ extended: true }));
     app.use("/", Index);
 /* EndPoint Base */
 
+/* EndPoint Auth */
+    import {router as Auth} from "./api/controllers/auth";
+    app.use("/api/auth/", Auth);
+/* EndPoint Auth */
+
 /* Static Files */
     app.use('/assets', express.static('assets'));
 /* Static Files */
