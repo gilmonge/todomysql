@@ -38,6 +38,22 @@ export let router = Router()
         let register = req.body
 
         let database:DB = new DB()
+        
+        /* validate if user exist */
+            let query_exist:string = `CALL proc_user_by_email(:email);`
+            let data_exist = {
+                email: register.email,
+            }
+            let responseDB_exist:any = await database.CRUDQuery(query_exist, data_exist)
+            
+            if(responseDB_exist.length > 0){
+                return res.send({
+                    status: 0,
+                    msg: "User already exist"
+                })
+            }
+        /* validate if user exist */
+
         let query:string = `CALL proc_user_create(
             :email,
             :password,
@@ -58,7 +74,6 @@ export let router = Router()
         }
 
         let responseDB:any = await database.CRUDQuery(query, data)
-        console.log(responseDB)
         
         if(responseDB.resultado && responseDB.resultado > 0){
             return res.send({
