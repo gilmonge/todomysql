@@ -20,4 +20,9 @@ export default class functions {
         let gen_hash = data.digest('hex');
         return gen_hash
     }
+
+    async comparePass(original_password:string, login_password:string) {
+        let gen_hash = await this.encryptPass(login_password)
+        return (original_password == gen_hash)
+    }
 }

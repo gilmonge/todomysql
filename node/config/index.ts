@@ -16,6 +16,8 @@ const config = {
         },
     /* data base */
 
+    TOKEN_KEY: ']Y#Tf}"Z4](XM8$K_28g',
+
 };
 
 export default config;

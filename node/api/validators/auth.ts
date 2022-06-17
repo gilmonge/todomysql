@@ -3,16 +3,17 @@ import moment from 'moment-timezone';
 
 const authValidator = {
     login: [
-        body('user').trim()
-            .notEmpty().withMessage('User cannot be empty')
-            .isLength({ min: 5 }).withMessage('The minimum username size is 5 characters')
-            .isLength({ max: 50 }).withMessage('The maximum user size is 50 characters')
-            .custom(value => {
-                let regex = /^[A-Z0-9]+$/
-                if(!regex.test(value)){ throw new Error('Can only contain letters and numbers'); }
+        body('email').trim()
+            .notEmpty().withMessage('Email cannot be empty')
+            .isLength({ min: 5 }).withMessage('The minimum email size is 5 characters')
+            .isLength({ max: 50 }).withMessage('The maximum size of the email is 50 characters')
+            .custom((value) => {
+                let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+                if(!regex.test(value)){ throw new Error('The email is not in the correct format'); }
                 return true;
-            }),
-        body('pass').trim()
+            })
+            .normalizeEmail(),
+        body('password').trim()
             .notEmpty().withMessage('Password cannot be empty')
             .isLength({ min: 6 }).withMessage('The minimum password size is 6 characters')
             .isLength({ max: 12 }).withMessage('The maximum password size is 12 characters')

@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import DB from "../modules/db";
 import authValidator from "../validators/auth";
 import functions from "../modules/function";
+import CONFIG from "../../config"
 
 export let router = Router()
 
@@ -13,9 +14,70 @@ export let router = Router()
         login
     );
     async function login(req: Request, res: Response) {
-        let urlBase : string = req.protocol+'://'+req.get('host')
-        
-        res.send({})
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res
+            .status(400)
+            .json({
+                state: false,
+                msg: "Errors found in the request",
+                errors: errors.array()
+            })
+        }
+        let login = req.body
+
+        let database:DB = new DB()
+        console.log('sdfsdfsdf')
+        /* validate if user exist */
+            let query_exist:string = `CALL proc_user_by_email(:email);`
+            let data_exist = {
+                email: login.email,
+            }
+            let responseDB:any = await database.CRUDQuery(query_exist, data_exist)
+            
+            if(responseDB.length > 0){
+                let Functions = new functions()
+                let user = responseDB[0]
+
+                let validation = await Functions.comparePass(user.password, `${user.token}${login.password}`)
+
+                if(validation){
+                    /* gen token */
+                    const jwt = require("jsonwebtoken");
+                    let token = jwt.sign(
+                        {
+                            "data": {
+                                id: user.id,
+                                username: user.email,
+                            }
+                        },
+                        CONFIG.TOKEN_KEY,
+                        {
+                            expiresIn: "365d",
+                        }
+                    );
+                    /* gen token */
+
+                    return res.send({
+                        status: 1,
+                        msg: "",
+                        data:{
+                            token: token,
+                        }
+                    })
+                } else {
+                    return res.send({
+                        status: 0,
+                        msg: "Incorrect login"
+                    })
+                }
+            } else {
+                return res.send({
+                    status: 0,
+                    msg: "The user doesn't exist"
+                })
+            }
+        /* validate if user exist */
     }
 /* login */
 
