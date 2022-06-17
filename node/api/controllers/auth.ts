@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import DB from "../modules/db";
 import authValidator from "../validators/auth";
+import functions from "../modules/function";
 
 export let router = Router()
 
@@ -54,6 +55,13 @@ export let router = Router()
             }
         /* validate if user exist */
 
+        /* encrypt password */
+            let Functions = new functions()
+            let token = Functions.stringRandom(15)
+            let password = `${token}${register.password}`
+            let pass_encrypt = await Functions.encryptPass(password)
+        /* encrypt password */
+
         let query:string = `CALL proc_user_create(
             :email,
             :password,
@@ -69,8 +77,8 @@ export let router = Router()
             lastname: register.lastname,
             email: register.email,
             dateOfBirth: register.dateOfBirth,
-            password: "TestTodo",
-            token: "TestTodo",
+            password: pass_encrypt,
+            token: token,
         }
 
         let responseDB:any = await database.CRUDQuery(query, data)
