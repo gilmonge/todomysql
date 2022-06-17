@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadbtodolist:3306
--- Generation Time: Jun 15, 2022 at 01:39 AM
+-- Generation Time: Jun 17, 2022 at 01:30 AM
 -- Server version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP Version: 8.0.19
 
@@ -89,6 +89,12 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_item_update` (`var_id` INT(9), `var_ti
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_profile_by_id` (`var_id` INT(9))   BEGIN
         SELECT * FROM `tbl_profile`
         WHERE `fk_user` = var_id;
+    END$$
+
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_by_email` (`email` VARCHAR(80))   BEGIN
+        SELECT * FROM `tbl_user`
+        WHERE `email` = email 
+        LIMIT 1;
     END$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_create` (`var_email` VARCHAR(80), `var_password` VARCHAR(50), `var_token` VARCHAR(15), `var_firstName` VARCHAR(50), `var_lastName` VARCHAR(50), `var_dateOfBirth` DATE)   BEGIN

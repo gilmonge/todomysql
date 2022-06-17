@@ -313,3 +313,19 @@
 
     CALL proc_profile_by_id(1);
 /* Seleccionar perfil usuario */
+
+/* Seleccionar usuario */
+    DELIMITER //
+    CREATE PROCEDURE proc_user_by_email(
+        email varchar(80)
+    )
+    BEGIN
+        SELECT * FROM `tbl_user`
+        WHERE `email` = email 
+        LIMIT 1;
+    END;
+    //
+    DELIMITER ;
+
+    CALL proc_user_by_email('gmonge@email.com');
+/* Seleccionar usuario */
