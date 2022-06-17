@@ -101,6 +101,11 @@ app.use(express.urlencoded({ extended: true }));
     app.use("/api/auth/", Auth);
 /* EndPoint Auth */
 
+/* EndPoint Category */
+    import {router as Category} from "./api/controllers/category";
+    app.use("/api/category/", Category);
+/* EndPoint Category */
+
 /* Static Files */
     app.use('/assets', express.static('assets'));
 /* Static Files */

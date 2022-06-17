@@ -61,7 +61,7 @@ export default class DB {
                     
                     if(results.affectedRows != undefined){
                         resolve({
-                            resultado: results.affectedRows,
+                            result: results.affectedRows,
                             insertId: results.insertId
                         })
                         return
