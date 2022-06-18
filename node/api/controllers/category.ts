@@ -26,7 +26,7 @@ export let router = Router()
         }
         let database:DB = new DB()
 
-        /* validate if user exist */
+        /* get list of categories */
             let query:string = `CALL proc_category_select_by_user_id(:idUser);`
             let data = {
                 idUser: req.params.id,
@@ -47,7 +47,7 @@ export let router = Router()
                     data: []
                 })
             }
-        /* validate if user exist */
+        /* get list of categories */
     }
 /* base */
 
@@ -71,7 +71,7 @@ export let router = Router()
         }
         let database:DB = new DB()
 
-        /* validate if user exist */
+        /* create new category */
             let query:string = `CALL proc_category_create(
                 :idUser, 
                 :category
@@ -94,7 +94,7 @@ export let router = Router()
                     msg: "Failed to register",
                 })
             }
-        /* validate if user exist */
+        /* create new category */
     }
 /* insert category */
 
@@ -118,7 +118,7 @@ export let router = Router()
         }
         let database:DB = new DB()
 
-        /* validate if user exist */
+        /* get category by id */
             let query:string = `CALL proc_category_select_by_id(:id);`
             let data = {
                 id: req.params.id,
@@ -139,13 +139,13 @@ export let router = Router()
                     data: []
                 })
             }
-        /* validate if user exist */
+        /* get category by id */
     }
 /* get category */
 
 /* put category */
     router.put(
-        "/cat/:id", 
+        "/:id", 
         categoryValidator.putCategory,
         verifyToken,
         putCategory
@@ -163,7 +163,7 @@ export let router = Router()
         }
         let database:DB = new DB()
 
-        /* validate if user exist */
+        /* update category */
             let query:string = `CALL proc_category_update(
                 :id,
                 :category
@@ -186,13 +186,13 @@ export let router = Router()
                     msg: "Failed to update",
                 })
             }
-        /* validate if user exist */
+        /* update category */
     }
 /* put category */
 
 /* delete category */
     router.delete(
-        "/cat/:id", 
+        "/:id", 
         categoryValidator.deleteCategory,
         verifyToken,
         deleteCategory
@@ -210,7 +210,7 @@ export let router = Router()
         }
         let database:DB = new DB()
 
-        /* validate if user exist */
+        /* delete category */
             let query:string = `CALL proc_category_delete(:id);`
             let data = {
                 id: req.params.id,
@@ -229,6 +229,6 @@ export let router = Router()
                     msg: "Failed to delete",
                 })
             }
-        /* validate if user exist */
+        /* delete category */
     }
 /* delete category */
