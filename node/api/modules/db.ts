@@ -25,22 +25,17 @@ export default class DB {
 
         /* conect to mysql */
         this.connection.connect(function(err) {
-            // en caso de error
             if(err){
                 console.log(err.code);
                 console.log(err.fatal);
                 ConectionStatus = false
-            }else{
-                console.log("DB conected")
             }
         });
         return ConectionStatus
     }
     
     private async disconectBD(): Promise<void>{
-        this.connection.end(function(){
-            console.log("DB disconected")
-        });
+        this.connection.end(function(){});
     }
 
     async CRUDQuery(query: string, data: any){
