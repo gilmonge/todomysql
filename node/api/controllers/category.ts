@@ -2,6 +2,7 @@ import { Router, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import DB from "../modules/db";
 import categoryValidator from '../validators/category'
+import verifyToken from "../modules/auth";
 
 export let router = Router()
 
@@ -9,6 +10,7 @@ export let router = Router()
     router.get(
         "/:id", 
         categoryValidator.getList,
+        verifyToken,
         list
     );
     async function list(req: Request, res: Response) {
@@ -53,6 +55,7 @@ export let router = Router()
     router.post(
         "/:id", 
         categoryValidator.postCategory,
+        verifyToken,
         postCategory
     );
     async function postCategory(req: Request, res: Response) {
@@ -99,6 +102,7 @@ export let router = Router()
     router.get(
         "/cat/:id", 
         categoryValidator.getCat,
+        verifyToken,
         getCat
     );
     async function getCat(req: Request, res: Response) {
@@ -143,6 +147,7 @@ export let router = Router()
     router.put(
         "/cat/:id", 
         categoryValidator.putCategory,
+        verifyToken,
         putCategory
     );
     async function putCategory(req: Request, res: Response) {
@@ -189,6 +194,7 @@ export let router = Router()
     router.delete(
         "/cat/:id", 
         categoryValidator.deleteCategory,
+        verifyToken,
         deleteCategory
     );
     async function deleteCategory(req: Request, res: Response) {

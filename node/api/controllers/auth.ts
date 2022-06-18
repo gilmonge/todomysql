@@ -4,6 +4,7 @@ import DB from "../modules/db";
 import authValidator from "../validators/auth";
 import functions from "../modules/function";
 import CONFIG from "../../config"
+import jwt from "jsonwebtoken"
 
 export let router = Router()
 
@@ -43,7 +44,6 @@ export let router = Router()
 
                 if(validation){
                     /* gen token */
-                    const jwt = require("jsonwebtoken");
                     let token = jwt.sign(
                         {
                             "data": {
