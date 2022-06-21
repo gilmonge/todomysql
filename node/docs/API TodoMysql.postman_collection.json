@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "12a52239-4a48-4679-9387-3d116d45dd5e",
+		"name": "API TodoMysql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21483023"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Gilberth\",\r\n    \"lastname\": \"Monge\",\r\n    \"email\": \"gmonge@email.com\",\r\n    \"conf_email\": \"gmonge@email.com\",\r\n    \"dateOfBirth\": \"1996-02-05\",\r\n    \"password\": \"TestTodo\",\r\n    \"conf_password\": \"TestTodo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gmonge@email.com\",\r\n    \"password\": \"TestTodo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Category list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/category/:idUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"category",
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Test category\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/category/:idUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"category",
+								":idUser"
+							],
+							"variable": [
+								{
+									"key": "idUser",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/category/cat/:idCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"category",
+								"cat",
+								":idCategory"
+							],
+							"variable": [
+								{
+									"key": "idCategory",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Test category update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/category/:idCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"category",
+								":idCategory"
+							],
+							"variable": [
+								{
+									"key": "idCategory",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Test category update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/category/:idCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"category",
+								":idCategory"
+							],
+							"variable": [
+								{
+									"key": "idCategory",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Items list by category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/item/:idCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"item",
+								":idCategory"
+							],
+							"variable": [
+								{
+									"key": "idCategory",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"title category 2\",\r\n    \"detail\": \"Test category 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/item/:idCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"item",
+								":idCategory"
+							],
+							"variable": [
+								{
+									"key": "idCategory",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get item",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/item/item/:idItem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"item",
+								"item",
+								":idItem"
+							],
+							"variable": [
+								{
+									"key": "idItem",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"title category 2\",\r\n    \"detail\": \"Test category 2 edit\",\r\n    \"status\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/item/:idItem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"item",
+								":idItem"
+							],
+							"variable": [
+								{
+									"key": "idItem",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Item delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Test category update\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/item/:idItem",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"item",
+								":idItem"
+							],
+							"variable": [
+								{
+									"key": "idItem",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
