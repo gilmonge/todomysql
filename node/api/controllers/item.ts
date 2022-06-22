@@ -201,9 +201,9 @@ export let router = Router()
         "/:id", 
         itemValidator.deleteItem,
         verifyToken,
-        deleteCategory
+        deleteItem
     );
-    async function deleteCategory(req: Request, res: Response) {
+    async function deleteItem(req: Request, res: Response) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res

@@ -111,6 +111,11 @@ app.use(express.urlencoded({ extended: true }));
     app.use("/api/item/", Item);
 /* EndPoint Item */
 
+/* EndPoint User */
+    import {router as User} from "./api/controllers/user";
+    app.use("/api/user/", User);
+/* EndPoint User */
+
 /* Static Files */
     app.use('/assets', express.static('assets'));
 /* Static Files */

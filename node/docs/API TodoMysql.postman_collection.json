@@ -41,6 +41,18 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"APIToken\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -87,7 +99,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -129,7 +141,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -174,7 +186,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -217,7 +229,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -259,7 +271,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -309,7 +321,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -351,7 +363,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -396,7 +408,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -439,7 +451,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -481,7 +493,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6Imdtb25nZUBlbWFpbC5jb20ifSwiaWF0IjoxNjU1NDMyMjUzLCJleHAiOjE2ODY5NjgyNTN9.68U4nFyj8hrUBKriftcnFRyu9262IKvG5w3l5YKrccs",
+								"value": "Bearer {{APIToken}}",
 								"type": "text"
 							}
 						],
@@ -510,6 +522,140 @@
 								{
 									"key": "idItem",
 									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Get profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{APIToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/user/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{APIToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Gilberth\",\r\n    \"lastName\": \"Monge G\",\r\n    \"dateOfBirth\": \"1996-02-05\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/user/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{APIToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8061/api/user/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8061",
+							"path": [
+								"api",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
 								}
 							]
 						}
