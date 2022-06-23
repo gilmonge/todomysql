@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import permissionsPolicy from 'permissions-policy'
 import bodyParser from 'body-parser';
 import cors from 'cors'
+import swaggerUi from 'swagger-ui-express';
 
 const app: Express = express()
 
@@ -115,6 +116,20 @@ app.use(express.urlencoded({ extended: true }));
     import {router as User} from "./api/controllers/user";
     app.use("/api/user/", User);
 /* EndPoint User */
+
+/* Swagger */
+    
+    import swaggerDocument from './api/modules/swagger.json'
+    let optionsSwagger = {
+        customCss: `
+            .swagger-ui .topbar { display: none; } 
+            .swagger-ui .wrapper .models{ display: none; }
+            .swagger-ui .wrapper{ padding: 0 20px 20px 20px; }
+        `,
+        customSiteTitle: "Documentation todo API"
+    };
+    app.use('/swagger/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, optionsSwagger));
+/* Swagger */
 
 /* Static Files */
     app.use('/assets', express.static('assets'));

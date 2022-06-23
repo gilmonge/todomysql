@@ -1,0 +1,46 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Todo API",
+        "version": "0.0.1",
+        "description": "Use to demonstrate skills",
+        "contact": {
+            "name": "Todo API",
+            "url": "https://gilberthmonge.com/"
+        }
+    },
+    "host": "localhost:8061",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Authorization",
+            "description": ""
+        },
+        {
+            "name": "Profile",
+            "description": ""
+        },
+        {
+            "name": "Category",
+            "description": ""
+        },
+        {
+            "name": "Item",
+            "description": ""
+        }
+    ],
+    "schemes": [],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "securityDefinitions": {
+        "Bearer":{
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+    },
+    "paths": {
+    }
+}
