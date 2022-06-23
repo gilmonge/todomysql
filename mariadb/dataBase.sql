@@ -91,9 +91,9 @@ CREATE DEFINER=`root`@`%` PROCEDURE `proc_profile_by_id` (`var_id` INT(9))   BEG
         WHERE `fk_user` = var_id;
     END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_by_email` (`email` VARCHAR(80))   BEGIN
+CREATE DEFINER=`root`@`%` PROCEDURE `proc_user_by_email` (`var_email` VARCHAR(80))   BEGIN
         SELECT * FROM `tbl_user`
-        WHERE `email` = email 
+        WHERE `email` = var_email 
         LIMIT 1;
     END$$
 

@@ -317,11 +317,11 @@
 /* Seleccionar usuario */
     DELIMITER //
     CREATE PROCEDURE proc_user_by_email(
-        email varchar(80)
+        var_email varchar(80)
     )
     BEGIN
         SELECT * FROM `tbl_user`
-        WHERE `email` = email 
+        WHERE `email` = var_email 
         LIMIT 1;
     END;
     //
