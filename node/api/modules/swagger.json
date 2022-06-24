@@ -10,7 +10,7 @@
         }
     },
     "host": "localhost:8061",
-    "basePath": "/",
+    "basePath": "/api/",
     "tags": [
         {
             "name": "Authorization",
@@ -40,7 +40,653 @@
         }
     },
     "definitions": {
+        "Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email used to create account."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password used to create account."
+                }
+            },
+            "example": {
+                "email": "mail@email.com",
+                "password": "TestTodo"
+            }
+        },
+        "Register": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "description": "User's first name."
+                },
+                "lastname": {
+                    "type": "string",
+                    "description": "User's last name."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email to create a user account."
+                },
+                "conf_email": {
+                    "type": "string",
+                    "description": "To confirm the email."
+                },
+                "dateOfBirth": {
+                    "type": "string",
+                    "description": "User's date of birth."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password used to create account."
+                },
+                "conf_password": {
+                    "type": "string",
+                    "description": "To confirm the password."
+                }
+            },
+            "example": {
+                "firstname": "Gilberth",
+                "lastname": "Monge",
+                "email": "gmonge@email.com",
+                "conf_email": "gmonge@email.com",
+                "dateOfBirth": "1996-02-05",
+                "password": "TestTodo",
+                "conf_password": "TestTodo"
+            }
+        },
+        "ProfileUpdate": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "description": "New first name."
+                },
+                "lastname": {
+                    "type": "string",
+                    "description": "New last name."
+                },
+                "dateOfBirth": {
+                    "type": "string",
+                    "description": "New date of birth."
+                }
+            },
+            "example": {
+                "firstName": "Gilberth",
+                "lastName": "Monge",
+                "dateOfBirth": "1996-02-05"
+            }
+        },
+
+        "Category": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "description": "Title of category."
+                }
+            },
+            "example": {
+                "category": "Test category"
+            }
+        },
+
+        "ItemPost": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Title of item."
+                },
+                "detail": {
+                    "type": "string",
+                    "description": "Content of item."
+                }
+            },
+            "example": {
+                "title": "title category 2",
+                "detail": "Test category 2"
+            }
+        },
+        "ItemPut": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Title of item."
+                },
+                "detail": {
+                    "type": "string",
+                    "description": "Content of item."
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "Status of item."
+                }
+            },
+            "example": {
+                "title": "title category 2",
+                "detail": "Test category 2 edit",
+                "status": 2
+            }
+        },
+
+        "SuccessMessage": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "boolean",
+                    "description": "Status of request."
+                },
+                "msg": {
+                    "type": "string",
+                    "description": "Error if exist."
+                },
+                "data": {
+                    "type": "object",
+                    "description": "List the data if they exist."
+                }
+            },
+            "example": {
+                "status": 1,
+                "msg": "",
+                "data": []
+            }
+        },
+        "FailedMessage": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "type": "boolean",
+                    "description": "Status of request."
+                },
+                "msg": {
+                    "type": "string",
+                    "description": "Error if exist."
+                },
+                "errors": {
+                    "type": "object",
+                    "description": "List the errors if they exist."
+                }
+            },
+            "example": {
+                "state": false,
+                "msg": "Errors found in the request",
+                "errors": []
+            }
+        }
     },
     "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": ["Authorization"],
+                "summary": "Login",
+                "description": "Login into API",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": ["Authorization"],
+                "summary": "Register",
+                "description": "Register into API",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/{id}": {
+            "get": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Profile"],
+                "summary": "Profile",
+                "description": "Get profile",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id user",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Profile"],
+                "summary": "Profile",
+                "description": "Put profile",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id user",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/ProfileUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Profile"],
+                "summary": "Profile",
+                "description": "Delete profile",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id user",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/category/{id}": {
+            "get": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Category"],
+                "summary": "Category",
+                "description": "Get category by user",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id user",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Category"],
+                "summary": "Category",
+                "description": "Post category by user",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id user",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/Category"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Category"],
+                "summary": "Category",
+                "description": "Put category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/Category"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Category"],
+                "summary": "Category",
+                "description": "Delete category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/category/cat/{id}": {
+            "get": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Category"],
+                "summary": "Category",
+                "description": "Get category by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        }
     }
 }

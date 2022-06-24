@@ -118,12 +118,11 @@ app.use(express.urlencoded({ extended: true }));
 /* EndPoint User */
 
 /* Swagger */
-    
     import swaggerDocument from './api/modules/swagger.json'
     let optionsSwagger = {
         customCss: `
-            .swagger-ui .topbar { display: none; } 
-            .swagger-ui .wrapper .models{ display: none; }
+            .swagger-ui .topbar_ { display: none; } 
+            .swagger-ui .wrapper .models_{ display: none; }
             .swagger-ui .wrapper{ padding: 0 20px 20px 20px; }
         `,
         customSiteTitle: "Documentation todo API"

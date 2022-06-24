@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken"
 export let router = Router()
 
 /* login */
-    router.get(
+    router.post(
         "/login", 
         authValidator.login,
         login
@@ -62,6 +62,7 @@ export let router = Router()
                         status: 1,
                         msg: "",
                         data:{
+                            id: user.id,
                             token: token,
                         }
                     })
