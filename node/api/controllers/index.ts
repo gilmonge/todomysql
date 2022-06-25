@@ -14,6 +14,20 @@ export let router = Router()
                     <meta name="description" content="API">
                     <style type="text/css">
                         a:hover {text-decoration: underline !important;}
+                        .btnAPi {
+                            margin: 0;
+                            margin-right: 10px;
+                            background: transparent;
+                            border: 2px solid gray;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            font-weight: 700;
+                            padding: 5px 23px;
+                            background-color: transparent;
+                            border-color: #49cc90;
+                            color: #49cc90;
+                            text-decoration: none;
+                        }
                     </style>
                 </head>
             
@@ -43,6 +57,14 @@ export let router = Router()
                                                         <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">
                                                             Todo List API 
                                                         </h1>
+                                                        <br/><br/><br/>
+                                                        <a href="/swagger/docs" class="btnAPi">
+                                                            Test API
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:0 35px;">
                                                         <span style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
                                                         <p style="line-height:24px; margin:0; font-size: 10px;">
                                                             <a href="https://gilberthmonge.com" style="font-size: 10px; color: #cac5c5 !important; text-decoration: none;" target="_blank">Gilberth Monge</a><br/>

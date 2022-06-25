@@ -1,6 +1,6 @@
 {
     "name": "todolist-api",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Todo list API",
     "main": "dist/index.js",
     "scripts": {

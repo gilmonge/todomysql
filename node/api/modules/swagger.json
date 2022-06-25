@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "Todo API",
-        "version": "0.0.1",
+        "version": "1.0.0",
         "description": "Use to demonstrate skills",
         "contact": {
             "name": "Todo API",
@@ -148,8 +148,8 @@
                 }
             },
             "example": {
-                "title": "title category 2",
-                "detail": "Test category 2"
+                "title": "Title item",
+                "detail": "Test item"
             }
         },
         "ItemPut": {
@@ -655,6 +655,244 @@
                         "name": "id",
                         "required": true,
                         "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/item/{id}": {
+            "get": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Item"],
+                "summary": "Item",
+                "description": "Get item by category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Item"],
+                "summary": "Item",
+                "description": "Post item by category",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id category",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/ItemPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Item"],
+                "summary": "Item",
+                "description": "Put item",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id item",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "required": true,
+                        "description": "Data",
+                        "schema": {
+                            "$ref": "#/definitions/ItemPut"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Item"],
+                "summary": "Item",
+                "description": "Delete Item",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id item",
+                        "schema": {
+                            "type":"integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return message or data",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessMessage"
+                        }
+                    },
+                    "401": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "403": {
+                         "description": "Return error",
+                         "schema": {
+                             "$ref": "#/definitions/FailedMessage"
+                         }
+                    },
+                    "404": {
+                        "description": "Return error",
+                        "schema": {
+                            "$ref": "#/definitions/FailedMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/item/item/{id}": {
+            "get": {
+                "security": [ { "Bearer" : [] } ],
+                "tags": ["Item"],
+                "summary": "Item",
+                "description": "Get item by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Id item",
                         "schema": {
                             "type":"integer"
                         }
