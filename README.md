@@ -9,3 +9,12 @@
 ---
 
 BackEnd Todo List
+
+Used technology
+
+- Node JS
+- TypeScript
+- MySql
+- Docker
+- PhpMyAdmin
+- Swagger
